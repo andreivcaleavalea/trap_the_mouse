@@ -82,14 +82,3 @@ impl AppError {
         self
     }
 }
-impl From<std::io::Error> for AppError {
-    fn from(err: std::io::Error) -> Self {
-        AppError::IOError(err)
-    }
-}
-
-impl From<std::string::FromUtf8Error> for AppError {
-    fn from(err: std::string::FromUtf8Error) -> Self {
-        AppError::UTF8Error(err.to_string())
-    }
-}
