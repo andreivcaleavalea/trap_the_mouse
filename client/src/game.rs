@@ -114,11 +114,7 @@ impl Game {
 
                             match game.stream.as_ref().unwrap().read(&mut buffer) {
                                 Ok(0) => {
-                                    game.win = true;
-                                    game.win_state = String::from(
-                                        "          AI CASTIGAT \n PLAYERUL S-A DECONECTAT",
-                                    );
-                                    game.state = State::Finished;
+                                    game.screen = Screen::ConnectingError;
 
                                     return;
                                 }
@@ -239,6 +235,10 @@ impl Game {
                                     game.board[buffer[16] as usize][buffer[17] as usize] = 2;
                                     game.board[buffer[18] as usize][buffer[19] as usize] = 2;
                                     game.state = State::Play;
+                                }
+                                Ok(0) => {
+                                    game.screen = Screen::ConnectingError;
+                                    return;
                                 }
                                 Ok(_) => {}
                                 Err(e) => {
