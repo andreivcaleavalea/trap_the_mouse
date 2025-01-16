@@ -5,3 +5,5 @@ edition = "2021"
 
 [dependencies]
 eframe = "0.24"
+image = { version = "0.24", features = [ "png", "jpeg" ] }
+common = { path = "../common" }
